@@ -1,0 +1,34 @@
+# Studio Revestir — TODO
+
+- [x] Extrair imagens reais do site antigo (studiorevestir.com.br)
+- [x] Fazer upload das imagens para webdev storage
+- [x] Criar schema de banco de dados para produtos
+- [x] Inserir os 6 produtos no banco de dados com imagens reais
+- [x] Configurar fontes Fraunces + Hanken Grotesk no HTML
+- [x] Definir paleta de cores (basalt, travertino, hijau, areia) no CSS global
+- [x] Criar rota tRPC para listar produtos
+- [x] Criar header com logo à esquerda, nome da empresa e navegação
+- [x] Criar seção Hero com imagens reais e chamada principal
+- [x] Criar grade de produtos protagonistas (6 produtos com imagens reais)
+- [x] Criar seção de piscinas (Pedra Hijau e Pedra Hitam)
+- [x] Criar seção dedicada à Lajinha Laminada
+- [x] Criar seção "Por que pedra natural?" com cards informativos
+- [x] Criar faixa de confiança com estatísticas da empresa
+- [x] Criar footer completo com contato, redes sociais e endereço
+- [x] Garantir design responsivo em todas as seções
+- [x] Adicionar links de WhatsApp em todos os botões de contato
+- [x] Escrever testes vitest para as rotas de produtos
+- [x] Salvar checkpoint final
+- [x] Criar componente QuoteFormModal com campos: nome, telefone, produto de interesse e metragem
+- [x] Integrar o modal ao botão "Solicitar Orçamento" no hero e em todos os cards de produto
+- [x] Ao submeter, montar mensagem formatada e abrir WhatsApp automaticamente
+- [x] Adicionar prop onOpenQuoteForm no Header para o botão "Fale no WhatsApp"
+- [x] Corrigir header: remover nome/tagline ao lado da logo, deixar somente a logo
+- [x] Adicionar produto Banheira em Pedra Natural da Indonésia como carro-chefe
+- [x] Limpar o layout geral e melhorar acessibilidade (aria-labels, contraste, foco, semântica)
+- [x] Remover produto Quartzito do banco de dados, grade de produtos, hero e footer
+- [x] Substituir imagem da Lajinha Laminada por foto real de piso (sem mobiliário urbano/impressão 3D)
+- [x] Remover todas as imagens e referências a mobiliário urbano e impressão 3D do site
+- [x] Adicionar Bordas de Piscina como produto em destaque (1º ou 2º na grade e no hero)
+- [x] Atualizar imagem do card Travertino para foto real do Travertino Rock Face
+- [x] Inserir Bordas de Piscina no banco de dados com imagem real e link WhatsApp

@@ -30,7 +30,7 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
   throw new Error(`No available port found starting from ${startPort}`);
 }
 
-export async function createApp() {
+export async function createApp({ serveFrontend = false }: { serveFrontend?: boolean } = {}) {
   const app = express();
   const server = createServer(app);
 
@@ -52,7 +52,7 @@ export async function createApp() {
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);
-  } else {
+  } else if (serveFrontend) {
     serveStatic(app);
   }
 

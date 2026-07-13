@@ -1,0 +1,6 @@
+# Exclude server-side code from static deployment
+server/
+api/
+vercel.json
+drizzle/
+.mjs

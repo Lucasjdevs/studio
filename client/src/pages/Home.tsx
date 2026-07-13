@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { trpc } from "@/lib/trpc";
 import QuoteFormModal from "@/components/QuoteFormModal";
 
 const WA_NUMBER = "551145518581";
@@ -378,69 +377,40 @@ function TrustStrip() {
 
 // ── Products Grid ─────────────────────────────────────────────────────────────
 function ProductsSection({ openQuoteFor }: { openQuoteFor: (product: string) => void }) {
-  const { data: products, isLoading, isError } = trpc.products.featured.useQuery();
-
-  if (isError) {
-    return (
-      <section id="produtos" style={{ padding: "96px 0", background: "var(--travertino)" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", padding: "48px 0" }}>
-            <p style={{ color: "#6a6356", fontSize: "1rem" }}>Não foi possível carregar os produtos. Por favor, tente novamente em instantes.</p>
-            <a
-              href={`${WA_BASE}${encodeURIComponent("Olá! Gostaria de conhecer os produtos da Studio Revestir.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginTop: "20px", background: "var(--hijau)", color: "var(--osso)", padding: "14px 22px", borderRadius: "2px", textDecoration: "none", fontWeight: 600 }}
-            >
-              <WhatsAppIcon /> Fale conosco no WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!isLoading && (!products || products.length === 0)) {
-    return (
-      <section id="produtos" style={{ padding: "96px 0", background: "var(--travertino)" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", padding: "48px 0" }}>
-            <p style={{ color: "#6a6356", fontSize: "1rem" }}>Nenhum produto encontrado no momento. Entre em contato para consultar disponibilidade.</p>
-            <a
-              href={`${WA_BASE}${encodeURIComponent("Olá! Gostaria de consultar os produtos disponíveis na Studio Revestir.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginTop: "20px", background: "var(--hijau)", color: "var(--osso)", padding: "14px 22px", borderRadius: "2px", textDecoration: "none", fontWeight: 600 }}
-            >
-              <WhatsAppIcon /> Consultar via WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (isLoading) {
-    return (
-      <section id="produtos" style={{ padding: "96px 0", background: "var(--travertino)" }}>
-        <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "22px" }} className="prot-grid">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                style={{
-                  borderRadius: "3px",
-                  minHeight: "330px",
-                  background: "rgba(21,19,15,0.06)",
-                  animation: "pulse 1.5s infinite",
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const products = [
+    {
+      id: 1,
+      name: "Pedra Hijau",
+      shortDescription: "Tons verdes sofisticados para piscinas e spas com visual tropical e elegante.",
+      imageUrl: "/manus-storage/pedra-hijau-e-pedra-hitam-na-piscina-featured_033031ed.webp",
+      whatsappMessage: "Olá! Gostaria de conhecer a Pedra Hijau da Studio Revestir.",
+      category: "Piscinas",
+    },
+    {
+      id: 2,
+      name: "Pedra Hitam",
+      shortDescription: "Estética escura e contemporânea para fachadas, piscinas e projetos premium.",
+      imageUrl: "/manus-storage/pedra-hijau-e-pedra-hitam-na-piscina-featured_033031ed.webp",
+      whatsappMessage: "Olá! Gostaria de conhecer a Pedra Hitam da Studio Revestir.",
+      category: "Fachadas",
+    },
+    {
+      id: 3,
+      name: "Lajinha Laminada",
+      shortDescription: "Superfície refinada e durável para revestimentos internos e externos.",
+      imageUrl: "/manus-storage/LAJINHA-LAMINADA-5_419db146.jpg",
+      whatsappMessage: "Olá! Gostaria de conhecer a Lajinha Laminada da Studio Revestir.",
+      category: "Revestimento",
+    },
+    {
+      id: 4,
+      name: "Travertino",
+      shortDescription: "Textura natural e charme clássico para ambientes de alto padrão.",
+      imageUrl: "/manus-storage/fachada-residencial-com-pedra-natural-vale-a-pena-featured_b24817a3.webp",
+      whatsappMessage: "Olá! Gostaria de conhecer o Travertino da Studio Revestir.",
+      category: "Ambientes",
+    },
+  ];
 
   return (
     <section id="produtos" style={{ padding: "96px 0", background: "var(--travertino)" }}>
@@ -474,7 +444,7 @@ function ProductsSection({ openQuoteFor }: { openQuoteFor: (product: string) => 
           }}
           className="prot-grid"
         >
-          {(products ?? []).map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} onOpenQuoteForm={openQuoteFor} />
           ))}
         </div>

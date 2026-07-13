@@ -86,27 +86,8 @@ declare global {
   }
 }
 
-const API_KEY = import.meta.env.VITE_FRONTEND_FORGE_API_KEY;
-const FORGE_BASE_URL =
-  import.meta.env.VITE_FRONTEND_FORGE_API_URL ||
-  "https://forge.butterfly-effect.dev";
-const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
-
 function loadMapScript() {
-  return new Promise(resolve => {
-    const script = document.createElement("script");
-    script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    script.onload = () => {
-      resolve(null);
-      script.remove(); // Clean up immediately
-    };
-    script.onerror = () => {
-      console.error("Failed to load Google Maps script");
-    };
-    document.head.appendChild(script);
-  });
+  return Promise.resolve(null);
 }
 
 interface MapViewProps {
@@ -131,6 +112,16 @@ export function MapView({
       console.error("Map container not found");
       return;
     }
+
+    if (typeof window === "undefined" || !window.google?.maps) {
+      mapContainer.current.innerHTML = "";
+      const placeholder = document.createElement("div");
+      placeholder.className = "flex h-full w-full items-center justify-center rounded-md border border-dashed border-muted-foreground/30 bg-muted/20 p-6 text-center text-sm text-muted-foreground";
+      placeholder.textContent = "Mapa estático indisponível nesta versão sem dependências externas.";
+      mapContainer.current.appendChild(placeholder);
+      return;
+    }
+
     map.current = new window.google.maps.Map(mapContainer.current, {
       zoom: initialZoom,
       center: initialCenter,

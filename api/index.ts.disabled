@@ -1,0 +1,11 @@
+// API disabled for static deployment.
+// Original serverless handler was removed to avoid Vercel compiling server-side
+// TypeScript during the static-only deployment. Restore this file (rename to
+// `api/index.ts`) if you intend to enable serverless functions again.
+
+export default function handler() {
+  return {
+    status: 404,
+    body: 'API disabled in static deployment',
+  };
+}
